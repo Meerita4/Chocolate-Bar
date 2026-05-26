@@ -1,4 +1,6 @@
 import { de } from "./de";
+import { en } from "./en";
+import { es } from "./es";
 
 export const languages = {
   de: "Deutsch",
@@ -9,9 +11,7 @@ export const languages = {
 export type Lang = keyof typeof languages;
 export const defaultLang: Lang = "de";
 
-export const translations = {
-  de,
-} as const;
+export const translations = { de, en, es } as const;
 
 export function getLangFromUrl(url: URL): Lang {
   const [, lang] = url.pathname.split("/");
@@ -19,7 +19,6 @@ export function getLangFromUrl(url: URL): Lang {
   return defaultLang;
 }
 
-export function useTranslations(_lang: Lang) {
-  // Only DE available now; EN and ES will be added later
-  return translations["de"];
+export function useTranslations(lang: Lang) {
+  return translations[lang] ?? translations[defaultLang];
 }

@@ -9,35 +9,52 @@ export interface Props {
 const { lang, t } = Astro.props;
 const currentPath = Astro.url.pathname;
 
+// Build nav links with lang prefix (default DE uses root paths)
+const prefix = lang === "de" ? "" : `/${lang}`;
+
 const navItems = [
-  { label: t.nav.home, href: "/" },
-  { label: t.nav.umgebung, href: "/umgebung" },
-  { label: t.nav.galerie, href: "/galerie" },
-  { label: t.nav.lage, href: "/lage" },
-  { label: t.nav.kontakt, href: "/kontakt" },
+  { label: t.nav.home, href: `${prefix}/` },
+  { label: t.nav.umgebung, href: `${prefix}/umgebung` },
+  { label: t.nav.galerie, href: `${prefix}/galerie` },
+  { label: t.nav.lage, href: `${prefix}/lage` },
+  { label: t.nav.kontakt, href: `${prefix}/kontakt` },
 ];
+
+// Get the current page slug to build the language switcher links
+const slugMatch = currentPath.match(/^\/(de|en|es)\/?(.*)/);
+const currentSlug = slugMatch ? slugMatch[2] : currentPath.replace(/^\//, "");
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <!-- Top bar with language switcher -->
   <div class="border-b border-white/5 bg-black/90 backdrop-blur-md px-6 py-2 flex justify-end items-center gap-4">
-    <span class="text-[10px] uppercase tracking-widest text-white/30">Sprache:</span>
+    <span class="text-[10px] uppercase tracking-widest text-white/30">{lang === "de" ? "Sprache" : lang === "en" ? "Language" : "Idioma"}:</span>
     <a
-      href="/"
+      href={`/${currentSlug}`}
       class={`text-[10px] uppercase tracking-widest transition-colors ${lang === "de" ? "text-[#c8952a] font-semibold" : "text-white/40 hover:text-white/70"}`}
     >
       DE
     </a>
     <span class="text-white/20">|</span>
-    <span class="text-[10px] uppercase tracking-widest text-white/25 cursor-not-allowed" title="Coming soon">EN</span>
+    <a
+      href={`/en/${currentSlug}`}
+      class={`text-[10px] uppercase tracking-widest transition-colors ${lang === "en" ? "text-[#c8952a] font-semibold" : "text-white/40 hover:text-white/70"}`}
+    >
+      EN
+    </a>
     <span class="text-white/20">|</span>
-    <span class="text-[10px] uppercase tracking-widest text-white/25 cursor-not-allowed" title="Coming soon">ES</span>
+    <a
+      href={`/es/${currentSlug}`}
+      class={`text-[10px] uppercase tracking-widest transition-colors ${lang === "es" ? "text-[#c8952a] font-semibold" : "text-white/40 hover:text-white/70"}`}
+    >
+      ES
+    </a>
   </div>
 
   <!-- Main nav -->
   <nav class="bg-black/80 backdrop-blur-md border-b border-white/5 px-6 lg:px-12 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group">
+    <a href={`${prefix}/`} class="flex items-center gap-3 group">
       <div class="w-9 h-9 rounded-full border border-[#c8952a]/60 flex items-center justify-center group-hover:border-[#c8952a] transition-colors">
         <span class="text-[#c8952a] text-sm font-bold" style="font-family: 'Playfair Display', serif;">C</span>
       </div>

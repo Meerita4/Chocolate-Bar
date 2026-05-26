@@ -3,14 +3,19 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/index";
+import type { Lang } from "../i18n/index";
+import type { Translations } from "../i18n/de";
 
 export interface Props {
   title?: string;
   description?: string;
+  lang?: Lang;
+  t?: Translations;
 }
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const resolvedLang: Lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const lang = resolvedLang;
+const t = Astro.props.t ?? useTranslations(resolvedLang);
 
 const {
   title = "Chocolate Music Bar – Cala Ratjada, Mallorca",

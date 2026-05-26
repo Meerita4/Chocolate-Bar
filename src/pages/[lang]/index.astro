@@ -1,0 +1,166 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { languages, useTranslations } from "../../i18n/index";
+import type { Lang } from "../../i18n/index";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+
+const galleryItems = [
+  "Bar & Terrace", "Garden at Night", "Cocktail Lounge",
+  "Palm Garden", "Night Atmosphere", "The Music Bar",
+];
+---
+
+<Layout title={`Chocolate Music Bar – Cala Ratjada, Mallorca`} lang={lang} t={t}>
+  <!-- HERO -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0d0501] via-[#1a0804] to-[#0d0501]">
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#c8952a]/5 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0d0501] to-transparent"></div>
+    </div>
+    <div class="absolute inset-0 opacity-15 bg-gradient-to-br from-[#3e1a08] to-[#0d0501] flex items-center justify-center">
+      <p class="text-[#c8952a]/20 text-xs tracking-[0.3em] uppercase">[ Hero Foto Placeholder – 1920x1080px ]</p>
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <p class="text-[#c8952a] text-[11px] tracking-[0.4em] uppercase mb-6">{t.hero.tagline}</p>
+      <h1 class="text-6xl md:text-8xl font-bold text-white leading-tight mb-6" style="font-family: 'Playfair Display', serif;">
+        Chocolate
+      </h1>
+      <div class="w-12 h-px bg-[#c8952a] mx-auto mb-6"></div>
+      <p class="text-white/60 text-base md:text-lg leading-relaxed mb-4 max-w-2xl mx-auto font-light tracking-wide">{t.hero.headline}</p>
+      <p class="text-white/40 text-sm leading-relaxed mb-10 max-w-xl mx-auto font-light">{t.hero.subheadline}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#about" class="inline-block bg-[#c8952a] hover:bg-[#e8b84b] text-black font-semibold px-8 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors">{t.hero.cta}</a>
+        <a href={`/${lang}/kontakt`} class="inline-block border border-[#c8952a]/50 hover:border-[#c8952a] text-[#c8952a] font-semibold px-8 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors">{t.hero.ctaContact}</a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div class="w-px h-10 bg-gradient-to-b from-[#c8952a]/60 to-transparent mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 lg:py-32 bg-[#0d0501]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.about.sectionLabel}</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight" style="font-family: 'Playfair Display', serif;">{t.about.title}</h2>
+          <div class="w-10 h-0.5 bg-[#c8952a] mb-8"></div>
+          <div class="space-y-5 text-white/55 text-sm leading-relaxed">
+            <p>{t.about.p1}</p>
+            <p>{t.about.p2}</p>
+            <p>{t.about.p3}</p>
+          </div>
+          <div class="mt-10 flex items-center gap-6">
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#c8952a]" style="font-family: 'Playfair Display', serif;">1982</p>
+              <p class="text-white/35 text-[10px] tracking-widest uppercase mt-1">{lang === "de" ? "Eröffnet" : lang === "en" ? "Founded" : "Apertura"}</p>
+            </div>
+            <div class="w-px h-12 bg-white/10"></div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#c8952a]" style="font-family: 'Playfair Display', serif;">40+</p>
+              <p class="text-white/35 text-[10px] tracking-widest uppercase mt-1">{lang === "de" ? "Jahre" : lang === "en" ? "Years" : "Años"}</p>
+            </div>
+            <div class="w-px h-12 bg-white/10"></div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#c8952a]" style="font-family: 'Playfair Display', serif;">#1</p>
+              <p class="text-white/35 text-[10px] tracking-widest uppercase mt-1">Cala Ratjada</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="aspect-[3/4] bg-gradient-to-br from-[#2a0f04] to-[#3e1a08] rounded-sm flex items-end p-4">
+            <p class="text-[#c8952a]/30 text-[9px] tracking-widest uppercase">[ Foto 1 ]</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <div class="aspect-square bg-gradient-to-br from-[#3e1a08] to-[#2a0f04] rounded-sm flex items-end p-4">
+              <p class="text-[#c8952a]/30 text-[9px] tracking-widest uppercase">[ Foto 2 ]</p>
+            </div>
+            <div class="aspect-square bg-gradient-to-br from-[#1a0804] to-[#3e1a08] rounded-sm flex items-end p-4">
+              <p class="text-[#c8952a]/30 text-[9px] tracking-widest uppercase">[ Foto 3 ]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="py-24 bg-gradient-to-b from-[#0d0501] to-[#100602]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-16">
+        <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.features.sectionLabel}</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white" style="font-family: 'Playfair Display', serif;">{t.features.title}</h2>
+        <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: t.features.f1Title, desc: t.features.f1Desc, icon: "♪" },
+          { title: t.features.f2Title, desc: t.features.f2Desc, icon: "✦" },
+          { title: t.features.f3Title, desc: t.features.f3Desc, icon: "★" },
+          { title: t.features.f4Title, desc: t.features.f4Desc, icon: "✿" },
+        ].map(({ title, desc, icon }) => (
+          <div class="border border-white/5 hover:border-[#c8952a]/30 p-8 transition-all duration-300 hover:bg-white/[0.02]">
+            <div class="text-[#c8952a] text-2xl mb-5">{icon}</div>
+            <h3 class="text-white font-semibold text-base mb-3" style="font-family: 'Playfair Display', serif;">{title}</h3>
+            <p class="text-white/40 text-sm leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY TEASER -->
+  <section class="py-24 bg-[#0d0501]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-12">
+        <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.galerie.sectionLabel}</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white" style="font-family: 'Playfair Display', serif;">{t.galerie.title}</h2>
+        <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6 mb-4"></div>
+        <p class="text-white/40 text-sm max-w-xl mx-auto">{t.galerie.subtitle}</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {galleryItems.map((label) => (
+          <div class="aspect-square bg-gradient-to-br from-[#2a0f04] to-[#3e1a08] hover:from-[#3e1a08] hover:to-[#4a2010] transition-all duration-300 flex flex-col items-center justify-center gap-3 group">
+            <svg class="w-8 h-8 text-[#c8952a]/20 group-hover:text-[#c8952a]/40 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="text-[#c8952a]/25 group-hover:text-[#c8952a]/50 text-[9px] tracking-widest uppercase transition-colors">{label}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href={`/${lang}/galerie`} class="inline-block border border-[#c8952a]/50 hover:border-[#c8952a] text-[#c8952a] font-semibold px-8 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors">
+          {t.galerie.sectionLabel}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION CTA -->
+  <section class="py-24 bg-gradient-to-b from-[#0d0501] to-black">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">Cala Ratjada · Mallorca</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight" style="font-family: 'Playfair Display', serif;">
+        {lang === "de" ? "Besuchen Sie uns" : lang === "en" ? "Visit us" : "Visítenos"}
+      </h2>
+      <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mb-8"></div>
+      <p class="text-white/40 text-sm mb-2">Carrer d'Elionor Servera, 38</p>
+      <p class="text-white/40 text-sm mb-10">07590 Cala Ratjada, Mallorca</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/lage`} class="inline-block bg-[#c8952a] hover:bg-[#e8b84b] text-black font-semibold px-8 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors">
+          {t.lage.directions}
+        </a>
+        <a href="tel:+34971564864" class="inline-block border border-white/15 hover:border-white/40 text-white/50 hover:text-white font-semibold px-8 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors">
+          (+34) 971 564 864
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
