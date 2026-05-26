@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const highlights = [
+  t.umgebung.h1, t.umgebung.h2, t.umgebung.h3, t.umgebung.h4,
+  t.umgebung.h5, t.umgebung.h6, t.umgebung.h7, t.umgebung.h8,
+];
+---
+
+<Layout title="Umgebung – Chocolate Music Bar Cala Ratjada">
+  <!-- Page header -->
+  <div class="pt-32 pb-16 bg-gradient-to-b from-[#100602] to-[#0d0501]">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.umgebung.sectionLabel}</p>
+      <h1 class="text-4xl md:text-6xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+        {t.umgebung.title}
+      </h1>
+      <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6"></div>
+    </div>
+  </div>
+
+  <!-- Hero image placeholder -->
+  <div class="h-64 md:h-96 bg-gradient-to-br from-[#2a0f04] to-[#0d0501] flex items-center justify-center">
+    <p class="text-[#c8952a]/25 text-xs tracking-[0.3em] uppercase">[ Panoramabild Cala Ratjada – Placeholder ]</p>
+  </div>
+
+  <!-- Content -->
+  <section class="py-20 bg-[#0d0501]">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12">
+      <div class="space-y-6 text-white/55 text-sm leading-relaxed">
+        <p>{t.umgebung.p1}</p>
+        <p>{t.umgebung.p2}</p>
+        <p>{t.umgebung.p3}</p>
+        <p>{t.umgebung.p4}</p>
+        <p>{t.umgebung.p5}</p>
+        <p>{t.umgebung.p6}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="py-20 bg-[#100602]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <h2 class="text-2xl font-bold text-white text-center mb-12" style="font-family: 'Playfair Display', serif;">
+        {t.umgebung.highlights}
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {highlights.map((item) => (
+          <div class="border border-white/5 hover:border-[#c8952a]/30 p-6 text-center transition-all group">
+            <div class="w-8 h-0.5 bg-[#c8952a]/30 group-hover:bg-[#c8952a] mx-auto mb-4 transition-colors"></div>
+            <p class="text-white/60 text-xs tracking-widest uppercase group-hover:text-white/90 transition-colors">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo grid placeholder -->
+  <section class="py-20 bg-[#0d0501]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[1,2,3].map(n => (
+          <div class="aspect-[4/3] bg-gradient-to-br from-[#2a0f04] to-[#3e1a08] flex items-end p-4">
+            <p class="text-[#c8952a]/30 text-[9px] tracking-widest uppercase">[ Umgebung Foto {n} ]</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

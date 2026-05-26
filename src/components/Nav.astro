@@ -1,0 +1,136 @@
+---
+import type { de } from "../i18n/de";
+
+export interface Props {
+  lang: string;
+  t: typeof de;
+}
+
+const { lang, t } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: t.nav.home, href: "/" },
+  { label: t.nav.umgebung, href: "/umgebung" },
+  { label: t.nav.galerie, href: "/galerie" },
+  { label: t.nav.lage, href: "/lage" },
+  { label: t.nav.kontakt, href: "/kontakt" },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <!-- Top bar with language switcher -->
+  <div class="border-b border-white/5 bg-black/90 backdrop-blur-md px-6 py-2 flex justify-end items-center gap-4">
+    <span class="text-[10px] uppercase tracking-widest text-white/30">Sprache:</span>
+    <a
+      href="/"
+      class={`text-[10px] uppercase tracking-widest transition-colors ${lang === "de" ? "text-[#c8952a] font-semibold" : "text-white/40 hover:text-white/70"}`}
+    >
+      DE
+    </a>
+    <span class="text-white/20">|</span>
+    <span class="text-[10px] uppercase tracking-widest text-white/25 cursor-not-allowed" title="Coming soon">EN</span>
+    <span class="text-white/20">|</span>
+    <span class="text-[10px] uppercase tracking-widest text-white/25 cursor-not-allowed" title="Coming soon">ES</span>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="bg-black/80 backdrop-blur-md border-b border-white/5 px-6 lg:px-12 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-full border border-[#c8952a]/60 flex items-center justify-center group-hover:border-[#c8952a] transition-colors">
+        <span class="text-[#c8952a] text-sm font-bold" style="font-family: 'Playfair Display', serif;">C</span>
+      </div>
+      <div>
+        <p class="text-white font-semibold text-sm tracking-widest uppercase leading-none" style="font-family: 'Playfair Display', serif;">Chocolate</p>
+        <p class="text-[#c8952a]/70 text-[9px] tracking-[0.2em] uppercase leading-none mt-0.5">Music Bar</p>
+      </div>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navItems.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-[11px] uppercase tracking-[0.15em] font-medium transition-colors ${
+              currentPath === href
+                ? "text-[#c8952a]"
+                : "text-white/50 hover:text-white/90"
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Facebook link -->
+    <a
+      href="https://www.facebook.com/ChocolateCalaRajada/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden md:flex items-center gap-2 border border-white/10 hover:border-[#c8952a]/50 px-3 py-1.5 rounded-sm transition-colors group"
+    >
+      <svg class="w-3.5 h-3.5 text-white/40 group-hover:text-[#c8952a] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      <span class="text-[10px] tracking-widest uppercase text-white/40 group-hover:text-white/70 transition-colors">Facebook</span>
+    </a>
+
+    <!-- Mobile menu button -->
+    <button id="menu-toggle" class="md:hidden text-white/60 hover:text-white transition-colors" aria-label="Menü öffnen">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-md border-b border-white/5">
+    <ul class="px-6 py-4 flex flex-col gap-4">
+      {navItems.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class={`block text-[11px] uppercase tracking-[0.15em] font-medium transition-colors py-1 ${
+              currentPath === href
+                ? "text-[#c8952a]"
+                : "text-white/50 hover:text-white/90"
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+      <li class="border-t border-white/5 pt-4">
+        <a
+          href="https://www.facebook.com/ChocolateCalaRajada/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[10px] uppercase tracking-widest text-white/40 hover:text-[#c8952a] transition-colors"
+        >
+          Facebook
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  // Scroll effect
+  const header = document.getElementById("site-header");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+  });
+</script>

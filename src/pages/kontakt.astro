@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Kontakt – Chocolate Music Bar Cala Ratjada">
+  <!-- Page header -->
+  <div class="pt-32 pb-16 bg-gradient-to-b from-[#100602] to-[#0d0501]">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.kontakt.sectionLabel}</p>
+      <h1 class="text-4xl md:text-6xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+        {t.kontakt.title}
+      </h1>
+      <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6 mb-4"></div>
+      <p class="text-white/40 text-sm max-w-xl mx-auto">{t.kontakt.subtitle}</p>
+    </div>
+  </div>
+
+  <section class="py-20 bg-[#0d0501]">
+    <div class="max-w-5xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+
+        <!-- Contact form -->
+        <div class="lg:col-span-3">
+          <form class="space-y-5" name="kontakt" method="POST" data-netlify="true">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder={t.kontakt.namePlaceholder}
+                  required
+                  class="w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-[#c8952a]/50 text-white/80 placeholder-white/20 text-sm px-4 py-3 outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <input
+                  type="tel"
+                  name="telefon"
+                  placeholder={t.kontakt.phonePlaceholder}
+                  class="w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-[#c8952a]/50 text-white/80 placeholder-white/20 text-sm px-4 py-3 outline-none transition-colors"
+                />
+              </div>
+            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder={t.kontakt.emailPlaceholder}
+              required
+              class="w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-[#c8952a]/50 text-white/80 placeholder-white/20 text-sm px-4 py-3 outline-none transition-colors"
+            />
+            <input
+              type="text"
+              name="betreff"
+              placeholder={t.kontakt.subjectPlaceholder}
+              class="w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-[#c8952a]/50 text-white/80 placeholder-white/20 text-sm px-4 py-3 outline-none transition-colors"
+            />
+            <textarea
+              name="nachricht"
+              rows="6"
+              placeholder={t.kontakt.messagePlaceholder}
+              required
+              class="w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-[#c8952a]/50 text-white/80 placeholder-white/20 text-sm px-4 py-3 outline-none transition-colors resize-none"
+            ></textarea>
+            <button
+              type="submit"
+              class="w-full bg-[#c8952a] hover:bg-[#e8b84b] text-black font-semibold py-3 text-[11px] tracking-[0.15em] uppercase transition-colors"
+            >
+              {t.kontakt.send}
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact info sidebar -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Direct contact -->
+          <div class="space-y-4">
+            <p class="text-[#c8952a] text-[10px] tracking-[0.25em] uppercase">Direkt kontaktieren</p>
+            <a href="tel:+34971564864" class="flex items-center gap-3 group">
+              <div class="w-8 h-8 border border-white/10 group-hover:border-[#c8952a]/40 flex items-center justify-center transition-colors">
+                <svg class="w-3.5 h-3.5 text-white/30 group-hover:text-[#c8952a] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <span class="text-white/50 group-hover:text-white/80 text-sm transition-colors">(+34) 971 564 864</span>
+            </a>
+          </div>
+
+          <div class="w-full h-px bg-white/5"></div>
+
+          <!-- Address -->
+          <div class="space-y-3">
+            <p class="text-[#c8952a] text-[10px] tracking-[0.25em] uppercase">Adresse</p>
+            <div class="space-y-1">
+              <p class="text-white/50 text-sm">Carrer d'Elionor Servera, 38</p>
+              <p class="text-white/50 text-sm">07590 Cala Ratjada</p>
+              <p class="text-white/35 text-sm">Mallorca, Spanien</p>
+            </div>
+            <a href="/lage" class="inline-block text-[#c8952a]/60 hover:text-[#c8952a] text-[10px] tracking-widest uppercase transition-colors mt-2">
+              Auf Karte ansehen &rarr;
+            </a>
+          </div>
+
+          <div class="w-full h-px bg-white/5"></div>
+
+          <!-- Social -->
+          <div class="space-y-3">
+            <p class="text-[#c8952a] text-[10px] tracking-[0.25em] uppercase">{t.kontakt.or}</p>
+            <a
+              href="https://www.facebook.com/ChocolateCalaRajada/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 group"
+            >
+              <div class="w-8 h-8 border border-white/10 group-hover:border-[#c8952a]/40 flex items-center justify-center transition-colors">
+                <svg class="w-3.5 h-3.5 text-white/30 group-hover:text-[#c8952a] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <span class="text-white/50 group-hover:text-white/80 text-sm transition-colors">{t.kontakt.followUs}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

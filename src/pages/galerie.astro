@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const photos = [
+  "Eingang & Terrasse",
+  "Der Garten bei Nacht",
+  "Cocktail Bar",
+  "Palmen Garten",
+  "Die Bühne",
+  "Lounge Bereich",
+  "Panorama Aussicht",
+  "Abendstimmung",
+  "Barkeeper am Werk",
+  "Gäste & Atmosphäre",
+  "Nachtleben",
+  "Cala Ratjada Hafen",
+];
+---
+
+<Layout title="Foto Galerie – Chocolate Music Bar Cala Ratjada">
+  <!-- Page header -->
+  <div class="pt-32 pb-16 bg-gradient-to-b from-[#100602] to-[#0d0501]">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.galerie.sectionLabel}</p>
+      <h1 class="text-4xl md:text-6xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+        {t.galerie.title}
+      </h1>
+      <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6 mb-4"></div>
+      <p class="text-white/40 text-sm max-w-xl mx-auto">{t.galerie.subtitle}</p>
+    </div>
+  </div>
+
+  <!-- Gallery grid -->
+  <section class="py-12 bg-[#0d0501]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {photos.map((label, i) => (
+          <div
+            class={`bg-gradient-to-br from-[#2a0f04] to-[#3e1a08] hover:from-[#3e1a08] hover:to-[#4a2010] transition-all duration-300 flex flex-col items-center justify-center gap-3 group cursor-pointer ${i === 0 || i === 5 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}
+          >
+            <svg class="w-10 h-10 text-[#c8952a]/15 group-hover:text-[#c8952a]/35 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="text-[#c8952a]/20 group-hover:text-[#c8952a]/45 text-[9px] tracking-widest uppercase transition-colors text-center px-4">{label}</p>
+            <p class="text-white/10 text-[8px] tracking-widest">[Foto Placeholder]</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Coming soon note -->
+      <div class="mt-16 border border-[#c8952a]/15 p-10 text-center">
+        <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-3">{t.galerie.comingSoon}</p>
+        <p class="text-white/30 text-sm">Weitere Fotos werden in Kürze hinzugefügt.</p>
+        <a
+          href="https://www.facebook.com/ChocolateCalaRajada/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block mt-6 border border-[#c8952a]/40 hover:border-[#c8952a] text-[#c8952a] text-[10px] tracking-widest uppercase px-6 py-3 transition-colors"
+        >
+          Auf Facebook ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

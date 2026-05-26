@@ -1,0 +1,73 @@
+---
+import type { de } from "../i18n/de";
+
+export interface Props {
+  t: typeof de;
+}
+const { t } = Astro.props;
+---
+
+<footer class="bg-black border-t border-white/5">
+  <!-- Main footer -->
+  <div class="max-w-6xl mx-auto px-6 lg:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <!-- Brand -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full border border-[#c8952a]/60 flex items-center justify-center">
+          <span class="text-[#c8952a] font-bold" style="font-family: 'Playfair Display', serif;">C</span>
+        </div>
+        <div>
+          <p class="text-white font-semibold tracking-widest uppercase text-sm" style="font-family: 'Playfair Display', serif;">Chocolate</p>
+          <p class="text-[#c8952a]/60 text-[10px] tracking-[0.2em] uppercase">Music Bar</p>
+        </div>
+      </div>
+      <p class="text-white/35 text-xs leading-relaxed tracking-wide">{t.footer.since}</p>
+      <a
+        href="https://www.facebook.com/ChocolateCalaRajada/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-white/40 hover:text-[#c8952a] transition-colors"
+        aria-label="Facebook"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span class="text-[11px] tracking-widest uppercase">Facebook</span>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <div class="space-y-4">
+      <h4 class="text-[10px] uppercase tracking-[0.2em] text-[#c8952a] font-semibold">Navigation</h4>
+      <ul class="space-y-3">
+        <li><a href="/" class="text-white/40 hover:text-white/80 text-xs tracking-widest uppercase transition-colors">{t.nav.home}</a></li>
+        <li><a href="/umgebung" class="text-white/40 hover:text-white/80 text-xs tracking-widest uppercase transition-colors">{t.nav.umgebung}</a></li>
+        <li><a href="/galerie" class="text-white/40 hover:text-white/80 text-xs tracking-widest uppercase transition-colors">{t.nav.galerie}</a></li>
+        <li><a href="/lage" class="text-white/40 hover:text-white/80 text-xs tracking-widest uppercase transition-colors">{t.nav.lage}</a></li>
+        <li><a href="/kontakt" class="text-white/40 hover:text-white/80 text-xs tracking-widest uppercase transition-colors">{t.nav.kontakt}</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="space-y-4">
+      <h4 class="text-[10px] uppercase tracking-[0.2em] text-[#c8952a] font-semibold">{t.footer.contact}</h4>
+      <div class="space-y-2">
+        <p class="text-white/40 text-xs">{t.lage.addressValue}</p>
+        <p class="text-white/40 text-xs">{t.lage.city}</p>
+        <p class="text-white/40 text-xs">{t.lage.country}</p>
+        <a href="tel:+34971564864" class="block text-white/40 hover:text-[#c8952a] text-xs transition-colors mt-2">{t.lage.phoneValue}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-white/5 px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-white/20 text-[10px] tracking-widest uppercase">
+      {t.footer.company} &copy; {new Date().getFullYear()} &mdash; {t.footer.rights}
+    </p>
+    <div class="flex items-center gap-6">
+      <a href="/impressum" class="text-white/20 hover:text-white/50 text-[10px] tracking-widest uppercase transition-colors">{t.footer.legal}</a>
+      <a href="/kontakt" class="text-white/20 hover:text-white/50 text-[10px] tracking-widest uppercase transition-colors">{t.footer.contact}</a>
+    </div>
+  </div>
+</footer>

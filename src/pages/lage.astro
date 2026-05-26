@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Lage – Chocolate Music Bar Cala Ratjada">
+  <!-- Page header -->
+  <div class="pt-32 pb-16 bg-gradient-to-b from-[#100602] to-[#0d0501]">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[#c8952a] text-[10px] tracking-[0.35em] uppercase mb-4">{t.lage.sectionLabel}</p>
+      <h1 class="text-4xl md:text-6xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+        {t.lage.title}
+      </h1>
+      <div class="w-10 h-0.5 bg-[#c8952a] mx-auto mt-6"></div>
+    </div>
+  </div>
+
+  <section class="py-20 bg-[#0d0501]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Address card -->
+        <div class="space-y-8">
+          <div class="border border-white/5 p-8 space-y-6">
+            <h2 class="text-xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+              Chocolate Music Bar
+            </h2>
+            <div class="space-y-4">
+              <div>
+                <p class="text-[#c8952a] text-[10px] tracking-[0.25em] uppercase mb-2">{t.lage.address}</p>
+                <p class="text-white/70 text-sm">{t.lage.addressValue}</p>
+                <p class="text-white/70 text-sm">{t.lage.city}</p>
+                <p class="text-white/50 text-sm">{t.lage.country}</p>
+              </div>
+              <div class="w-full h-px bg-white/5"></div>
+              <div>
+                <p class="text-[#c8952a] text-[10px] tracking-[0.25em] uppercase mb-2">{t.lage.phone}</p>
+                <a href="tel:+34971564864" class="text-white/70 hover:text-[#c8952a] text-sm transition-colors">
+                  {t.lage.phoneValue}
+                </a>
+              </div>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Carrer+d%27Elionor+Servera%2C+38+CALA+RATJADA+Mallorca+07590"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-[#c8952a] hover:bg-[#e8b84b] text-black font-semibold px-6 py-3 text-[11px] tracking-[0.15em] uppercase transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {t.lage.directions}
+            </a>
+          </div>
+
+          <!-- How to find us note -->
+          <div class="border-l-2 border-[#c8952a]/40 pl-6 space-y-3">
+            <p class="text-[#c8952a] text-[10px] tracking-widest uppercase">Hinweise</p>
+            <p class="text-white/45 text-sm leading-relaxed">
+              Chocolate befindet sich im Zentrum von Cala Ratjada, direkt in der Calle Elionor Servera Nummer 38. Einfach dem Zentrum des Ortes folgen – wir sind nicht zu übersehen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="aspect-square lg:aspect-auto lg:h-full min-h-80 bg-gradient-to-br from-[#2a0f04] to-[#1a0804] border border-white/5 flex flex-col items-center justify-center gap-4">
+          <svg class="w-12 h-12 text-[#c8952a]/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <p class="text-[#c8952a]/25 text-[10px] tracking-[0.3em] uppercase text-center px-8">
+            [ Google Maps Embed<br/>Carrer d'Elionor Servera, 38<br/>Cala Ratjada ]
+          </p>
+          <a
+            href="https://maps.google.com/?q=Carrer+d%27Elionor+Servera%2C+38+CALA+RATJADA+Mallorca"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 text-[#c8952a]/40 hover:text-[#c8952a] text-[10px] tracking-widest uppercase border border-[#c8952a]/20 hover:border-[#c8952a]/50 px-4 py-2 transition-colors"
+          >
+            In Google Maps öffnen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
